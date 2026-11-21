@@ -86,12 +86,12 @@
         };
     };
 
-    /* 4. コンボ定義（P + BackSpace = Delete） */
+    /* 4. コンボ定義（10番:P + 11番:BackSpace = Delete） */
     combos {
         compatible = "zmk,combos";
         combo_del {
             timeout-ms = <50>;
-            key-positions = <10 11>; /* P と BSPC の位置 */
+            key-positions = <10 11>;
             bindings = <&kp DEL>;
         };
     };
@@ -124,14 +124,14 @@
     keymap {
         compatible = "zmk,keymap";
 
-        /* Layer 0: Base */
+        /* Layer 0: Base (50-key exact matrix mapping) */
         default_layer {
             display-name = "Base";
             bindings = <
-&gresc             &kp Q   &kp W     &kp E     &kp R             &kp T                      &kp Y            &kp U            &kp I      &kp O    &kp P            &kp BSPC
-&mt_fast LCTRL TAB &kp A   &kp S     &kp D     &td7              &kp G                      &kp H            &kp J            &kp K      &kp L    &lt_fast 3 SEMI  &lt_fast 4 SQT
-&mkp LCLK          &kp Z   &td4      &td5      &td6              &kp B      &m0  &mkp RCLK  &kp N            &kp M            &kp COMMA  &kp DOT  &kp FSLH         &kp RSHFT
-&mkp LCLK          &kp F13 &mt_fast LCTRL BSLH &kp LGUI &mt_fast LALT INT5 &mt_fast LSHFT SPACE  &lt_fast 1 RET &lt_fast 2 INT4 &td0     &kp MINUS &kp EQUAL       &kp F4
+&gresc             &kp Q   &kp W               &kp E     &kp R              &kp T                      &kp Y          &kp U           &kp I      &kp O    &kp P            &kp BSPC
+&mt_fast LCTRL TAB &kp A   &kp S               &kp D     &td7               &kp G                      &kp H          &kp J           &kp K      &kp L    &lt_fast 3 SEMI  &lt_fast 4 SQT
+&mkp LCLK          &kp Z   &td4                &td5      &td6               &kp B      &m0  &mkp RCLK  &kp N          &kp M           &kp COMMA  &kp DOT  &kp FSLH         &kp RSHFT
+&mkp LCLK          &kp F13 &mt_fast LCTRL BSLH           &kp LGUI &mt_fast LALT INT5 &mt_fast LSHFT SPACE  &lt_fast 1 RET &lt_fast 2 INT4 &td0                &kp MINUS &kp EQUAL       &kp F4
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_alt_tab>;
         };
@@ -143,7 +143,7 @@
 &trans &kp EXCL  &kp AT    &kp HASH &kp DLLR &kp PRCNT                  &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &trans
 &trans &kp N1    &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9   &kp N0   &kp PIPE
 &trans &kp LBRC  &kp RBRC  &kp LBKT &kp RBKT &kp UNDER &trans &kp PSCRN &kp MINUS &kp EQUAL &kp PLUS  &trans   &trans   &trans
-&trans &trans    &trans    &trans   &trans   &trans                     &trans    &trans    &trans    &none    &none    &none
+&trans &trans    &trans             &trans   &trans    &trans           &trans    &trans    &trans             &none    &none    &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_scroll>;
         };
@@ -155,7 +155,7 @@
 &trans       &kp F11 &kp F12 &kp F3 &kp F4 &kp F5                  &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &trans
 &bt BT_SEL 0 &kp F1  &kp F2  &kp F3 &kp F4 &kp F5                  &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &trans
 &bt BT_SEL 1 &trans  &trans  &trans &trans &trans  &trans  &trans  &trans &trans &trans &trans &trans  &trans
-&bt BT_SEL 2 &trans  &trans  &trans &trans &trans                  &trans &trans &trans &trans &trans  &trans
+&bt BT_SEL 2 &trans  &trans         &trans &trans  &trans          &trans &trans &trans        &trans &trans  &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_scroll>;
         };
@@ -167,7 +167,7 @@
 &trans &none     &m4       &td2      &m3       &mkp LCLK                  &kp PG_UP &kp HOME &kp UP   &kp END   &none &none
 &trans &none     &kp F2    &none     &kp F4    &kp F13                    &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT &none &none
 &trans &kp LC(Z) &kp LC(X) &kp LC(C) &kp LC(V) &kp LC(B)  &trans  &trans  &m8       &m4      &td2     &m3       &none &none
-&trans &none     &none     &trans    &trans    &trans                     &kp BSPC  &kp DEL  &m7      &none     &none &none
+&trans &none     &none               &trans    &trans     &trans          &kp BSPC  &kp DEL  &m7                &none &none &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_scroll>;
         };
@@ -179,7 +179,7 @@
 &none &none &none &none &none &none                  &none &none &none &none &none &none
 &m20  &m11  &m12  &m13  &m14  &m15                   &m16  &m17  &m18  &m19  &none &none
 &m21  &none &none &none &none &none  &trans  &trans  &none &none &none &none &none &none
-&none &none &none &none &trans &trans                &m5   &m6   &none &none &none &none
+&none &none &none       &none &trans &trans          &m5   &m6   &none       &none &none &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_scroll>;
         };
@@ -191,7 +191,7 @@
 &none &none &none &none     &none     &none                     &msc SCRL_UP   &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT &none &none
 &none &none &none &none     &none     &none                     &mkp MCLK      &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &none &none
 &none &none &none &none     &none     &none &kp C_MUTE &mkp MCLK &msc SCRL_DOWN &none          &none          &none           &none &none
-&none &none &none &mkp LCLK &mkp RCLK &mkp MCLK                 &none          &none          &none          &none           &none &none
+&none &none &none           &mkp LCLK &mkp RCLK &mkp MCLK       &none          &none          &none                          &none &none &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_scroll>;
         };
@@ -203,7 +203,7 @@
 &none        &none &none &none &none &none                     &none &none &none &none &none &none
 &bt BT_SEL 0 &none &none &none &none &none                     &none &none &none &none &none &none
 &bt BT_SEL 1 &none &none &none &none &none &kp C_MUTE &mkp MCLK &none &none &none &none &none &none
-&bt BT_SEL 2 &none &none &none &none &none                     &none &none &none &none &none &none
+&bt BT_SEL 2 &none &none       &none &none &none               &none &none &none             &none &none &none
 >;
 sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_scroll>;
 };
@@ -214,7 +214,7 @@ bindings = <
 &trans &mt_fast RCTRL Q &mt_fast RCTRL W &kp END &none     &none                  &none    &none &none &none &kp UP   &none
 &trans &kp HOME         &none            &kp DEL &kp RIGHT &none                  &kp BSPC &none &m7   &none &none    &none
 &trans &mt_fast RCTRL Z &mt_fast RCTRL X &mt_fast RCTRL C &mt_fast RCTRL V &kp LEFT &none &none &kp DOWN &none &none &none &none &none
-&none  &none            &none            &none   &none     &none                  &none    &none &none &none &none    &none
+&none  &none            &none                     &none   &none     &none          &none    &none &none       &none &none &none
 >;
 sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &enc_scroll>;
 };
